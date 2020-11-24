@@ -1,0 +1,151 @@
+# Basic HP
+tag:
+  desc: wandb tags
+  value:
+    - SHARP
+model_type:
+  desc: which model to use (CNN/TCN/MLP/RNN)
+  value: MLP
+epochs:
+  desc: Number of epochs to train over
+  value: 1
+batch_size:
+  desc: Size of each mini-batch
+  value: 65536
+momentum:
+  desc: momentum for SGD
+  value: 0.9
+optim:
+  desc: optimizer to use
+  value: SGD
+n_features:
+  desc: number of features to include (max 40)
+  value: 40
+
+# Learning rate
+learning_rate:
+  desc: initial learning rate
+  value: 0.00001
+lr_scheduler:
+  desc: if scheduler is on
+  value: True
+lr_finder:
+  desc: is lr finder should run
+  value: False
+log_lr:
+  desc: log lr finder to wandb
+  value: True
+min_lr:
+  desc: minimum lr for CLR
+  value: 0.00001
+max_lr:
+  desc: cyclic lr max value
+  value: 1
+lr_metric:
+  desc: Loss or TSS (loss is better, or is it??)
+  value: TSS
+lr_rangetest_iter:
+  desc: number of iterations for range test (200 seems best)
+  value: 200
+
+
+# TCN HP
+levels:
+  desc: num of tcn blocks
+  value: 1
+ksize:
+  desc: kernel size (smallest is 2)
+  value: 7
+nhid:
+  desc: number of filters
+  value: 40
+seq_len:
+  desc: size of sequence (Be 1 for MLP)
+  value: 1
+
+# MLP
+layers:
+  desc: MLP layers
+  value: 1
+hidden_units:
+  desc: number hidden nodes in layer
+  value: 100
+
+# Regularizer
+dropout:
+  desc: dropout applied to layers
+  value: 0.8
+weight_decay:
+  desc: L2 regularizing
+  value: 0.0
+
+# Cross Validation
+liu_fold:
+  desc: If liu fold should be done
+  value: False
+cross_validation:
+  desc: if crossval should be performed
+  value: False
+nested_cv:
+  desc: if nested crossval should be performed
+  value: False
+n_splits:
+  desc: number of splits
+  value: 3
+
+# Environment
+skorch:
+  desc: if skorch should be used to train (Faster, fewer metrics)
+  value: True
+checkpoint:
+  desc: should use network on best checkpoint?
+  value: False
+flare_label:
+  desc: Types of flare class
+  value: M5
+seed:
+  desc: random seed
+  value: 3
+clip:
+  desc: gradient clipping value (not skorch)
+  value: -1
+cuda:
+  desc: enables cuda training
+  value: True
+early_stop:
+  desc: stops training if overfitting, Don't use with lr scheduler
+  value: True
+patience:
+  desc: amount of epochs for early stopping
+  value: 40
+training:
+  desc: Trains models, else only tests
+  value: True
+model_name:
+  desc: The model used for evaluation (if training disabled, 1_100_65536_9e-2) dewald123/liu_pytorch_MLP/wq7vfdcf
+  value: dewald123/liu_pytorch_MLP/16z66cnv
+num_workers:
+  desc: number of gpu workers
+  value: 9
+parse_args:
+  desc: if args should be parse for bash script
+  value: False
+
+# Dataset
+dataset:
+  desc: which dataset to use \
+    (z_minmax_all/z_minmax_train/z_train/z_p_transformed/Krynauw/ Synth/ \
+    Sampled/ M5_only)
+  value: z_train/
+shuffle:
+  desc: if data should be shuffled or not
+  value: False
+
+# Interpretation
+interpret:
+  desc: activate captum/SHAP attribution methods
+  value: False
+evaluation:
+  desc: Do final evaluation, pr roc threholds
+  value: False
+
